@@ -11,7 +11,8 @@ const fontSerifCJK = !CJK()
 module.exports = {
   mode: 'jit',
   purge: ['./pages/**/*.js', './components/**/*.js', './layouts/**/*.js'],
-  darkMode: BLOG.appearance === 'auto' ? 'media' : 'class', // or 'media' or 'class'
+  // darkMode: BLOG.appearance === 'auto' ? 'media' : 'class', // or 'media' or 'class'
+  darkMode: 'class',
   theme: {
     extend: {
       colors: {
@@ -23,6 +24,7 @@ module.exports = {
         },
         yellow: {
           DEFAULT: '#f2cb53',
+          dark: '#ecc134',
         },
       },
       fontFamily: {

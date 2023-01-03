@@ -5,7 +5,9 @@ import BLOG from '@/blog.config';
 import { useLocale } from '@/lib/locale';
 import { useRouter } from 'next/router';
 import { useMemo } from 'react';
+import { useTheme } from 'next-themes';
 import Image from 'next/image';
+import { SunIcon, MoonIcon } from '@heroicons/react/24/solid'; //heroicons v2
 
 const NavBar = () => {
   const locale = useLocale();
@@ -29,6 +31,9 @@ const NavBar = () => {
     return links[0].to;
   }, [router]);
 
+  // ライト・ダークモード用テーマの設定
+  const { theme, setTheme } = useTheme();
+
   return (
     <div className="flex-shrink-0">
       <ul className="flex flex-row items-center gap-x-4">
@@ -40,7 +45,8 @@ const NavBar = () => {
                 className={classNames(
                   'block text-black dark:text-gray-50 nav',
                   {
-                    'border-b-2 border-yellow': link.to === activeNav,
+                    'border-b-2 border-yellow-dark dark:border-yellow':
+                      link.to === activeNav,
                   }
                 )}
               >
@@ -50,6 +56,19 @@ const NavBar = () => {
               </li>
             )
         )}
+        <li>
+          <button
+            className="block p-2 bg-night dark:bg-day rounded-full transition-all duration-200"
+            onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
+            aria-label="toggle Dark Mode"
+          >
+            {theme === 'light' ? (
+              <MoonIcon className="w-5 h-5 text-day" />
+            ) : (
+              <SunIcon className="w-5 h-5 text-night" />
+            )}
+          </button>
+        </li>
       </ul>
     </div>
   );
