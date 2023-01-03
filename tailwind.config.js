@@ -1,12 +1,12 @@
-const BLOG = require('./blog.config')
-const { fontFamily } = require('tailwindcss/defaultTheme')
-const CJK = require('./lib/cjk')
+const BLOG = require('./blog.config');
+const { fontFamily } = require('tailwindcss/defaultTheme');
+const CJK = require('./lib/cjk');
 const fontSansCJK = !CJK()
   ? []
-  : [`"Noto Sans CJK ${CJK()}"`, `"Noto Sans ${CJK()}"`]
+  : [`"Noto Sans CJK ${CJK()}"`, `"Noto Sans ${CJK()}"`];
 const fontSerifCJK = !CJK()
   ? []
-  : [`"Noto Serif CJK ${CJK()}"`, `"Noto Serif ${CJK()}"`]
+  : [`"Noto Serif CJK ${CJK()}"`, `"Noto Serif ${CJK()}"`];
 
 module.exports = {
   mode: 'jit',
@@ -16,11 +16,11 @@ module.exports = {
     extend: {
       colors: {
         day: {
-          DEFAULT: BLOG.lightBackground || '#ffffff'
+          DEFAULT: BLOG.lightBackground || '#faf8f7',
         },
         night: {
-          DEFAULT: BLOG.darkBackground || '#111827'
-        }
+          DEFAULT: BLOG.darkBackground || '#292626',
+        },
       },
       fontFamily: {
         sans: ['"IBM Plex Sans"', ...fontFamily.sans, ...fontSansCJK],
@@ -31,13 +31,13 @@ module.exports = {
           'system-ui',
           '-apple-system',
           'BlinkMacSystemFont',
-          'sans-serif'
-        ]
-      }
-    }
+          'sans-serif',
+        ],
+      },
+    },
   },
   variants: {
-    extend: {}
+    extend: {},
   },
-  plugins: []
-}
+  plugins: [],
+};
