@@ -20,7 +20,7 @@
     "postbuild": "next-sitemap --config next-sitemap.config.js"
   },
   "dependencies": {
-    "@heroicons/react": "^2.0.13",
+    "@heroicons/react": "^1.0.4",
     "axios": ">=0.21.1",
     "classnames": "^2.3.2",
     "feed": "^4.2.2",
@@ -49,9 +49,5 @@
     "postcss": "^8.3.11",
     "prettier": "^2.8.1",
     "tailwindcss": "^2.2.19"
-  },
-  "bugs": {
-    "url": "https://github.com/craigary/nobelium/issues",
-    "email": "i@craigary.net"
   }
 }

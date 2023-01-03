@@ -25,7 +25,6 @@ function MyApp({ Component, pageProps }) {
             />
           )}
           {BLOG.isProd && BLOG?.analytics?.provider === 'ga' && <Gtag />}
-
           {/* ライト・ダークモードを切り替える部分 */}
           <ThemeProvider
             attribute="class"

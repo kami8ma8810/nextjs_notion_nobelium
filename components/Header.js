@@ -1,13 +1,13 @@
 import classNames from 'classnames';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useMemo, useState } from 'react';
 import Link from 'next/link';
 import BLOG from '@/blog.config';
 import { useLocale } from '@/lib/locale';
 import { useRouter } from 'next/router';
-import { useMemo } from 'react';
 import { useTheme } from 'next-themes';
 import Image from 'next/image';
-import { SunIcon, MoonIcon } from '@heroicons/react/24/solid'; //heroicons v2
+import { SunIcon } from '@heroicons/react/solid';
+import { MoonIcon } from '@heroicons/react/solid';
 
 const NavBar = () => {
   const locale = useLocale();
@@ -33,6 +33,12 @@ const NavBar = () => {
 
   // ライト・ダークモード用テーマの設定
   const { theme, setTheme } = useTheme();
+
+  // heroiconを使うとSSRをする場合にlocalstorageの変数を用いてsvgをレンダリングするときにエラー（Warning: Prop `d` did not match）が出るため、クライアント側でレンダリングできるようにする
+  const [loaded, setLoaded] = useState(false);
+  useEffect(() => {
+    setLoaded(true);
+  }, [setLoaded]);
 
   return (
     <div className="flex-shrink-0">
@@ -62,10 +68,17 @@ const NavBar = () => {
             onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
             aria-label="toggle Dark Mode"
           >
-            {theme === 'light' ? (
-              <MoonIcon className="w-5 h-5 text-day" />
+            {/* // heroiconを使うとSSRをする場合にlocalstorageの変数を用いてsvgをレンダリングするときにエラー（Warning: Prop `d` did not match）が出るため、クライアント側でレンダリングできるようにする */}
+            {loaded && theme === 'light' ? (
+              <MoonIcon
+                className="w-5 h-5 text-day"
+                suppressHydrationWarning={true}
+              />
             ) : (
-              <SunIcon className="w-5 h-5 text-night" />
+              <SunIcon
+                className="w-5 h-5 text-night"
+                suppressHydrationWarning={true}
+              />
             )}
           </button>
         </li>
