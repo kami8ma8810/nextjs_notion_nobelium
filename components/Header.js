@@ -16,7 +16,7 @@ const NavBar = () => {
     { id: 0, name: locale.NAV.INDEX, to: BLOG.path || '/', show: true },
     { id: 1, name: locale.NAV.ABOUT, to: '/about', show: BLOG.showAbout },
     // { id: 2, name: locale.NAV.RSS, to: '/feed', show: true },
-    // { id: 3, name: locale.NAV.SEARCH, to: '/search', show: true }
+    // { id: 2, name: locale.NAV.SEARCH, to: '/search', show: true },
   ];
   const activeNav = useMemo(() => {
     //Blog
@@ -28,6 +28,11 @@ const NavBar = () => {
 
     // About
     if (router.asPath === links[1].to) return links[1].to;
+
+    // Search
+    // if (router.asPath === links[2].to) return links[2].to;
+
+    // デフォルト
     return links[0].to;
   }, [router]);
 
